@@ -17,7 +17,7 @@ void	ft_bzero(void *s, size_t n)
 	unsigned char	*byte_ptr;
 	size_t			i;	
 
-	if (s == NULL)
+	if (s == NULL || s == 0)
 		return ;
 	byte_ptr = s;
 	i = 0;
