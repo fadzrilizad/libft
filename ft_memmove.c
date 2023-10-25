@@ -18,7 +18,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	unsigned char		*dst_ptr;
 	const unsigned char	*src_ptr;
 
-	if (dst == NULL && src == NULL)
+	if (!dst && !src)
 		return (NULL);
 	dst_ptr = (unsigned char *)dst;
 	src_ptr = (const unsigned char *)src;
@@ -27,7 +27,11 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 		dst_ptr += len;
 		src_ptr += len;
 		while (len--)
-			*(--dst_ptr) = *(--src_ptr);
+		{
+			dst_ptr--;
+			src_ptr--;
+			*dst_ptr = *src_ptr;
+		}
 	}
 	else
 	{

@@ -18,8 +18,6 @@ void	*ft_memset(void *b, int c, size_t len)
 	unsigned char	*byte_ptr;
 	size_t			i;
 
-	if (b == NULL)
-		return (NULL);
 	byte_ptr = b;
 	i = 0;
 	while (i < len)
