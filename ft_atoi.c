@@ -1,19 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fizad <fizad@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 13:38:18 by fizad             #+#    #+#             */
-/*   Updated: 2023/10/17 13:38:21 by fizad            ###   ########.fr       */
+/*   Created: 2023/10/26 13:08:50 by fizad             #+#    #+#             */
+/*   Updated: 2023/10/26 13:08:51 by fizad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+int	ft_atoi(const char *str)
 {
-	ft_memset(s, '\0', n);
+	int		p;
+	int		r;
+	int		i;
+	char	*non;
+
+	p = 1;
+	r = 0;
+	i = 0;
+	non = " \n\t\v\f\r";
+	while (ft_strchr(non, str[i]))
+		i++;
+	while (ft_strchr("+-", str[i]))
+	{
+		if (str[i] == '-')
+			p = -1;
+		i++;
+	}
+	while (ft_isdigit(str[i]))
+	{
+		r = (r * 10) + (str[i] - '0');
+		i++;
+	}
+	return (r * p);
 }

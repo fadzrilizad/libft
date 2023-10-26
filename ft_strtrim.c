@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fizad <fizad@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 13:38:18 by fizad             #+#    #+#             */
-/*   Updated: 2023/10/17 13:38:21 by fizad            ###   ########.fr       */
+/*   Created: 2023/10/26 18:54:19 by fizad             #+#    #+#             */
+/*   Updated: 2023/10/26 18:54:21 by fizad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	ft_memset(s, '\0', n);
+	const char *trim;
+	size_t	i;
+	size_t	len;
+	if (!s1 || !set)
+		return (0);
+	i = 0;
+	while (s1[i] && ft_strchr(set, s1[i]))
+		i++;
+	trim = s1 + i;
+	len = ft_strlen(trim);
+	while (len && ft_strchr(set, trim[len]))
+		len--;
+	return (ft_substr(trim, 0, len + 1));
 }
