@@ -13,19 +13,22 @@
 #include <string.h>
 #include "libft.h"
 
-static void ft_revcpy(unsigned char *dst, const unsigned char *src, size_t len)
+static int ft_overlap(unsigned char *d, const unsigned char *s, size_t l)
 {
-		while (len--)
-			*(dst + len) = *(src + len);
-}
-
-static int ft_overlap(unsigned char *dst, const unsigned char *src, size_t len)
-{
-	if (dst > src && dst < src + len)
+	if (d > s && d < s + l)
 		return (1);
-	if (src > dst && src < dst + len)
+	if (s > d && s < d + l)
 		return (1);
 	return 0;
+}
+
+static void ft_revcpy(unsigned char *d, const unsigned char *s, size_t l)
+{
+		while (l)
+		{
+			l--;
+			*(d + l) = *(s + l);
+		}
 }
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
@@ -38,21 +41,3 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 		ft_memcpy(dst, src, len);
 	return (dst);
 }
-
-
-// void	*ft_memmove(void *dst, const void *src, size_t len)
-// {
-// 	unsigned char		*dst_ptr;
-// 	const unsigned char	*src_ptr;
-
-// 	if (!dst && !src)
-// 		return (NULL);
-// 	dst_ptr = (unsigned char *)dst;
-// 	src_ptr = (const unsigned char *)src;
-// 	if (dst_ptr > src_ptr && dst_ptr < src_ptr + len)
-// 		while (len--)
-// 			*(dst_ptr + len) = *(src_ptr + len);
-// 	else
-// 		ft_memcpy(dst_ptr, src_ptr, len);
-// 	return (dst);
-// }

@@ -21,9 +21,6 @@ OBJS = $(SRCS:.c=.o)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-main: main.c $(SRCS) 
-	gcc $(CFLAGS) $(SRCS) -o $@
-
 all: ${NAME}
 
 $(NAME): $(OBJS)

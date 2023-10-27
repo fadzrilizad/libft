@@ -12,13 +12,14 @@
 
 #include <stdlib.h>
 #include "libft.h"
+#include <stdint.h>
 
 void	*ft_calloc(size_t count, size_t size)
 {
 	void	*dst;
 	size_t	total_size;
 
-	if (count >= SIZE_MAX / size)
+	if (size && count >= SIZE_MAX / size)
 		return (NULL);
 	total_size = count * size;
 	dst = malloc(total_size);
