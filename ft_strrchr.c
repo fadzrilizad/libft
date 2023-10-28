@@ -21,7 +21,7 @@ char	*ft_strrchr(const char *s, int c)
 
 	head = s;
 	length = ft_strlen(s);
-	tail = (s + length);
+	tail = s + length;
 	while (1)
 	{
 		if (*tail == (unsigned char)c)
