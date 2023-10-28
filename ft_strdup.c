@@ -22,6 +22,6 @@ char	*ft_strdup(const char *s1)
 	if (!dst)
 		return (NULL);
 	ft_memcpy(dst, s1, len);
-	dst[len] = '\0';
+	*(dst + len) = '\0';
 	return (dst);
 }
