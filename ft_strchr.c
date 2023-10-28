@@ -24,10 +24,10 @@ char	*ft_strchr(const char *s, int c)
 	while (*str)
 	{
 		if ((char)*str == ch)
-			return (char *)str;
+			return ((char *)str);
 		str++;
 	}
 	if ((char)*str == ch)
-		return (char *)str;
+		return ((char *)str);
 	return (NULL);
 }

@@ -12,6 +12,17 @@
 
 #include "libft.h"
 
+static char	*ft_allocate_one(void)
+{
+	char	*sub;
+
+	sub = malloc(1);
+	if (!sub)
+		return (NULL);
+	*sub = '\0';
+	return (sub);
+}
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*substr;
@@ -20,15 +31,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!s)
 		return (NULL);
 	if (start >= (unsigned int)ft_strlen(s))
-	{
-		substr = malloc(1);
-		if (!substr)
-			return (NULL);
-		*substr = '\0';
-		return (substr);
-	}
-	if(len > ft_strlen(s + start))
-		len = ft_strlen(s + start);
+		return (ft_allocate_one());
+	if (len > ft_strlen (s + start))
+		len = ft_strlen (s + start);
 	substr = malloc(sizeof(char) * (len + 1));
 	if (!substr)
 		return (NULL);
@@ -39,6 +44,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		*loop++ = *s++;
 		len--;
 	}
-	*loop= '\0';
+	*loop = '\0';
 	return (substr);
 }

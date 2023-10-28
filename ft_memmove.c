@@ -13,18 +13,18 @@
 #include <string.h>
 #include "libft.h"
 
-static int ft_overlap(unsigned char *d, const unsigned char *s, size_t l)
+static int	ft_overlap(unsigned char *d, const unsigned char *s, size_t l)
 {
 	return ((d > s && d < s + l) || (s > d && s < d + l));
 }
 
-static void ft_revcpy(unsigned char *d, const unsigned char *s, size_t l)
+static void	ft_revcpy(unsigned char *d, const unsigned char *s, size_t l)
 {
-		while (l)
-		{
-			l--;
-			*(d + l) = *(s + l);
-		}
+	while (l)
+	{
+		l--;
+		*(d + l) = *(s + l);
+	}
 }
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
