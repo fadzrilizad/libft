@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fizad <fizad@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/28 22:14:44 by fizad             #+#    #+#             */
+/*   Updated: 2023/10/28 22:14:56 by fizad            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static size_t ft_wc(char *s, char c)
+static size_t	ft_wc(char *s, char c)
 {
-	size_t wc;
+	size_t	wc;
 
-	wc =  0;
+	wc = 0;
 	while (*s)
 	{
 		while (*s && *s == c)
@@ -17,11 +29,11 @@ static size_t ft_wc(char *s, char c)
 	return (wc);
 }
 
-static char *ft_strdup_d(const char *src, char c)
+static char	*ft_strdup_d(const char *src, char c)
 {
-	char		*src_head;
-	char 		*ptr;
-	size_t 		len;
+	char	*src_head;
+	char	*ptr;
+	size_t	len;
 
 	src_head = (char *)src;
 	while (*src && *src != c)
@@ -34,12 +46,12 @@ static char *ft_strdup_d(const char *src, char c)
 	return (ptr);
 }
 
-char **ft_split(const char *src, char c)
+char	**ft_split(const char *src, char c)
 {
 	char	**ptr;
 	char	*str;
-	size_t 	wc;
-	size_t 	i;
+	size_t	wc;
+	size_t	i;
 
 	str = (char *)src;
 	i = 0;

@@ -12,10 +12,10 @@
 
 #include "libft.h"
 
-static int ft_isspace(int c)
+static int	ft_isspace(int c)
 {
-	return (c == ' ' || c == '\t' || c == '\n' ||
-	 c == '\r' || c == '\f' || c == '\v');
+	return (c == ' ' || c == '\t' || c == '\n' || c == '\r' || 
+		c == '\f' || c == '\v');
 }
 
 int	ft_atoi(const char *str)
@@ -40,4 +40,3 @@ int	ft_atoi(const char *str)
 	}
 	return (result * sign);
 }
-
