@@ -20,8 +20,9 @@ void	*ft_memset(void *b, int c, size_t len)
 	byte_ptr = b;
 	while (len)
 	{
-		*byte_ptr++ = (unsigned char)c;
-		len--;
+		*byte_ptr = (unsigned char)c;
+		++byte_ptr;
+		--len;
 	}
 	return (b);
 }
