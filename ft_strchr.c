@@ -15,19 +15,17 @@
 char	*ft_strchr(const char *s, int c)
 {
 	const char	*str;
-	char		ch;
 
-	if (!s)
-		return (NULL);
 	str = s;
-	ch = c;
-	while (*str)
+	if (s == NULL)
+		return (NULL);
+	while (*str != '\0')
 	{
-		if ((char)*str == ch)
+		if ((char)*str == (char)c)
 			return ((char *)str);
-		str++;
+		++str;
 	}
-	if ((char)*str == ch)
+	if ((char)*str == (char)c)
 		return ((char *)str);
 	return (NULL);
 }

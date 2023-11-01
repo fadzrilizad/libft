@@ -12,62 +12,60 @@
 
 #include "libft.h"
 
-static size_t	ft_wc(char *s, char c)
+static size_t	count_word(char *src, char c)
 {
-	size_t	wc;
+	size_t	count;
 
-	wc = 0;
-	while (*s)
+	count = 0;
+	while (*src != '\0')
 	{
-		while (*s && *s == c)
-			s++;
-		if (*s)
-			wc++;
-		while (*s && *s != c)
-			s++;
+		while (*src != '\0' && *src == c)
+			++src;
+		if (*src != '\0' && *src != c)
+			++count;
+		while (*src != '\0' && *src != c)
+			++src;
 	}
-	return (wc);
+	return (count);
 }
 
-static char	*ft_strdup_d(const char *src, char c)
+static char	*ft_a_word(char *str, char c)
 {
-	char	*src_head;
-	char	*ptr;
-	size_t	len;
+	size_t	count;
+	char	*new_str;
 
-	src_head = (char *)src;
-	while (*src && *src != c)
-		src++;
-	len = src - src_head;
-	ptr = (char *)malloc(sizeof(char) * (len + 1));
-	if (!ptr)
+	count = 0;
+	while (str[count] != '\0' && str[count] != c)
+		++count;
+	new_str = (char *)malloc(sizeof(char) * (count + 1));
+	if (new_str == NULL)
 		return (NULL);
-	ft_strlcpy(ptr, src_head, len + 1);
-	return (ptr);
+	ft_strlcpy(new_str, str, count + 1);
+	return (new_str);
 }
 
 char	**ft_split(const char *src, char c)
 {
 	char	**ptr;
 	char	*str;
-	size_t	wc;
+	size_t	total_word;
 	size_t	i;
 
+	if (src == NULL)
+		return (NULL);
 	str = (char *)src;
+	total_word = count_word(str, c);
+	ptr = (char **)malloc(sizeof(char *) * (total_word + 1));
+	if (ptr == NULL)
+		return (NULL);
 	i = 0;
-	if (!src)
-		return (NULL);
-	wc = ft_wc(str, c);
-	ptr = (char **)malloc(sizeof(char *) * (wc + 1));
-	if (!ptr)
-		return (NULL);
-	while (*str)
+	while (*str != '\0')
 	{
-		while (*str && *str == c)
+		while (*str != '\0' && *str == c)
 			str++;
-		if (*str)
-			ptr[i++] = ft_strdup_d(str, c);
-		while (*str && *str != c)
+		if (*str != '\0' && *str != c)
+			ptr[i++] = ft_a_word(str, c);
+		while (*str != '\0' && *str != c)
 			str++;
 	}
 	ptr[i] = NULL;

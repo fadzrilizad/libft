@@ -22,14 +22,14 @@ static void	ft_revcpy(unsigned char *d, const unsigned char *s, size_t l)
 {
 	while (l)
 	{
-		l--;
+		--l;
 		*(d + l) = *(s + l);
 	}
 }
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	if (!dst && !src)
+	if (dst == NULL && src == NULL)
 		return (NULL);
 	if (ft_overlap(dst, src, len))
 		ft_revcpy(dst, src, len);
