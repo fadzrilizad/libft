@@ -28,7 +28,7 @@ char	*ft_strrchr(const char *s, int c)
 			return ((char *)(tail));
 		if (tail == head)
 			break ;
-		tail--;
+		--tail;
 	}
 	return (NULL);
 }

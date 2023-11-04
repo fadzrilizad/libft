@@ -15,7 +15,7 @@
 
 static int	ft_overlap(unsigned char *d, const unsigned char *s, size_t l)
 {
-	return ((d > s && d < s + l) || (s > d && s < d + l));
+	return ((d > s && d < s + l));
 }
 
 static void	ft_revcpy(unsigned char *d, const unsigned char *s, size_t l)

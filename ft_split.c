@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fizad <fizad@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/28 22:14:44 by fizad             #+#    #+#             */
-/*   Updated: 2023/10/28 22:14:56 by fizad            ###   ########.fr       */
+/*   Created: 2023/10/26 19:21:47 by fizad             #+#    #+#             */
+/*   Updated: 2023/10/26 19:21:48 by fizad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ static size_t	count_word(char *src, char c)
 	size_t	count;
 
 	count = 0;
-	while (*src != '\0')
+	while (*src)
 	{
-		while (*src != '\0' && *src == c)
+		while (*src == c)
 			++src;
-		if (*src != '\0' && *src != c)
+		if (*src && *src != c)
 			++count;
-		while (*src != '\0' && *src != c)
+		while (*src && *src != c)
 			++src;
 	}
 	return (count);
@@ -35,7 +35,7 @@ static char	*ft_a_word(char *str, char c)
 	char	*new_str;
 
 	count = 0;
-	while (str[count] != '\0' && str[count] != c)
+	while (str[count] && str[count] != c)
 		++count;
 	new_str = (char *)malloc(sizeof(char) * (count + 1));
 	if (new_str == NULL)
@@ -59,13 +59,13 @@ char	**ft_split(const char *src, char c)
 	if (ptr == NULL)
 		return (NULL);
 	i = 0;
-	while (*str != '\0')
+	while (*str)
 	{
-		while (*str != '\0' && *str == c)
+		while (*str && *str == c)
 			str++;
-		if (*str != '\0' && *str != c)
+		if (*str && *str != c)
 			ptr[i++] = ft_a_word(str, c);
-		while (*str != '\0' && *str != c)
+		while (*str && *str != c)
 			str++;
 	}
 	ptr[i] = NULL;

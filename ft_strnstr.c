@@ -18,17 +18,17 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	int		same_word;
 
 	needle_l = ft_strlen(needle);
-	if (!haystack && !len)
+	if (haystack == NULL && len == 0)
 		return (NULL);
-	if (!needle_l)
+	if (needle_l == 0)
 		return ((char *)haystack);
 	while (*haystack && needle_l <= len)
 	{
 		same_word = ft_strncmp(haystack, needle, needle_l) == 0;
 		if (*haystack == *needle && same_word)
 			return ((char *)haystack);
-		haystack++;
-		len--;
+		++haystack;
+		--len;
 	}
 	return (NULL);
 }
