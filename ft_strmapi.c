@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fizad <fizad@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 14:42:14 by fizad             #+#    #+#             */
-/*   Updated: 2023/10/26 14:42:15 by fizad            ###   ########.fr       */
+/*   Created: 2023/11/06 17:57:00 by fizad             #+#    #+#             */
+/*   Updated: 2023/11/06 17:57:01 by fizad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdint.h>
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	void	*dst;
-	size_t	total_size;
+	char	*str;
+	size_t	i;
 
-	if (count == SIZE_MAX && size == SIZE_MAX)
+	if (s == NULL || f == NULL)
 		return (NULL);
-	if (size != 0)
-	{
-		if (count >= SIZE_MAX / size)
-			return (NULL);
-	}
-	total_size = count * size;
-	dst = malloc(total_size);
-	if (dst)
-	{
-		ft_memset(dst, 0, total_size);
-		return (dst);
-	}
-	else
-	{
-		free(dst);
+	str = (char *)ft_strdup(s);
+	if (str == NULL)
 		return (NULL);
+	i = 0;
+	while (str[i])
+	{
+		str[i] = f(i, str[i]);
+		++i;
 	}
+	return (str);
 }

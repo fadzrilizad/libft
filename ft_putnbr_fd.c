@@ -1,41 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fizad <fizad@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 14:42:14 by fizad             #+#    #+#             */
-/*   Updated: 2023/10/26 14:42:15 by fizad            ###   ########.fr       */
+/*   Created: 2023/11/06 20:23:01 by fizad             #+#    #+#             */
+/*   Updated: 2023/11/06 20:23:03 by fizad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdint.h>
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	ft_putnbr_fd(int n, int fd)
 {
-	void	*dst;
-	size_t	total_size;
-
-	if (count == SIZE_MAX && size == SIZE_MAX)
-		return (NULL);
-	if (size != 0)
+	if (n == -2147483648)
 	{
-		if (count >= SIZE_MAX / size)
-			return (NULL);
+		ft_putnbr_fd(n / 10, fd);
+		ft_putchar_fd(8 + '0', fd);
 	}
-	total_size = count * size;
-	dst = malloc(total_size);
-	if (dst)
+	else if (n >= 0 && n <= 9)
 	{
-		ft_memset(dst, 0, total_size);
-		return (dst);
+		ft_putchar_fd(n + '0', fd);
+	}
+	else if (n > 9)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putchar_fd(n % 10 + '0', fd);
 	}
 	else
 	{
-		free(dst);
-		return (NULL);
-	}
+		ft_putchar_fd('-', fd);
+		ft_putnbr_fd(n * -1, fd);
+	}	
 }
