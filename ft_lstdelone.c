@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fizad <fizad@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 20:09:47 by fizad             #+#    #+#             */
-/*   Updated: 2023/10/16 20:09:48 by fizad            ###   ########.fr       */
+/*   Created: 2023/11/07 17:02:03 by fizad             #+#    #+#             */
+/*   Updated: 2023/11/07 17:02:06 by fizad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit(int c)
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	return ((c >= '0') && (c <= '9'));
+	if (lst == NULL || del == NULL)
+		return ;
+	del(lst->content);
+	free(lst);
 }

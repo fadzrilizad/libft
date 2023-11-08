@@ -62,11 +62,11 @@ char	**ft_split(const char *src, char c)
 	while (*str)
 	{
 		while (*str && *str == c)
-			str++;
+			++str;
 		if (*str && *str != c)
 			ptr[i++] = ft_a_word(str, c);
 		while (*str && *str != c)
-			str++;
+			++str;
 	}
 	ptr[i] = NULL;
 	return (ptr);
