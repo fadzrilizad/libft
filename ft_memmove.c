@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "libft.h"
 
 static int	ft_overlap(unsigned char *d, const unsigned char *s, size_t l)
