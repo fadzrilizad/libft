@@ -1,34 +1,20 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fizad <fizad@student.42kl.edu.my>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 17:13:44 by fizad             #+#    #+#             */
-/*   Updated: 2023/10/24 17:13:45 by fizad            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 {
-	size_t	needle_l;
-	int		same_word;
+	size_t	s2_len;
 
-	needle_l = ft_strlen(needle);
-	if (haystack == NULL && len == 0)
+	s2_len = ft_strlen(s2);
+	if (s2_len == 0)
+		return ((char *)(s1));
+	if (s1 == NULL && n == 0)
 		return (NULL);
-	if (needle_l == 0)
-		return ((char *)haystack);
-	while (*haystack && needle_l <= len)
+	while (*s1 && n >= s2_len)
 	{
-		same_word = ft_strncmp(haystack, needle, needle_l) == 0;
-		if (*haystack == *needle && same_word)
-			return ((char *)haystack);
-		++haystack;
-		--len;
+		if (ft_strncmp(s1, s2, s2_len) == 0)
+			return ((char *)(s1));
+		++s1;
+		--n;
 	}
 	return (NULL);
 }

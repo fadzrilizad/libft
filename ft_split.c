@@ -1,73 +1,59 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fizad <fizad@student.42kl.edu.my>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 19:21:47 by fizad             #+#    #+#             */
-/*   Updated: 2023/10/26 19:21:48 by fizad            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
-static size_t	count_word(char *src, char c)
+static int	count_word(char const *s, char c)
 {
-	size_t	count;
+	int	count;
 
 	count = 0;
-	while (*src)
+	while (*s)
 	{
-		while (*src == c)
-			++src;
-		if (*src && *src != c)
+		while (*s && *s == c)
+			++s;
+		if (*s && *s != c)
+		{
 			++count;
-		while (*src && *src != c)
-			++src;
+			++s;
+		}
+		while (*s && *s != c)
+			++s;
 	}
 	return (count);
 }
 
-static char	*ft_a_word(char *str, char c)
+static char	*a_string(const char *s, char c)
 {
-	size_t	count;
-	char	*new_str;
+	int		i;
+	char	*str;
 
-	count = 0;
-	while (str[count] && str[count] != c)
-		++count;
-	new_str = (char *)malloc(sizeof(char) * (count + 1));
-	if (new_str == NULL)
+	i = 0;
+	while (s[i] && s[i] != c)
+		++i;
+	str = ft_calloc(i + 1, sizeof(char));
+	if (str == NULL)
 		return (NULL);
-	ft_strlcpy(new_str, str, count + 1);
-	return (new_str);
+	ft_memcpy(str, s, i);
+	return (str);
 }
 
-char	**ft_split(const char *src, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**ptr;
-	char	*str;
-	size_t	total_word;
-	size_t	i;
+	int		count;
+	int		i;
 
-	if (src == NULL)
-		return (NULL);
-	str = (char *)src;
-	total_word = count_word(str, c);
-	ptr = (char **)malloc(sizeof(char *) * (total_word + 1));
+	count = count_word(s, c);
+	ptr = (char **)ft_calloc(count + 1, sizeof(char *));
 	if (ptr == NULL)
 		return (NULL);
 	i = 0;
-	while (*str)
+	while (*s)
 	{
-		while (*str && *str == c)
-			++str;
-		if (*str && *str != c)
-			ptr[i++] = ft_a_word(str, c);
-		while (*str && *str != c)
-			++str;
+		while (*s && *s == c)
+			++s;
+		if (*s && *s != c)
+			ptr[i++] = a_string(s, c);
+		while (*s && *s != c)
+			++s;
 	}
-	ptr[i] = NULL;
 	return (ptr);
 }

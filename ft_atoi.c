@@ -1,42 +1,30 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fizad <fizad@student.42kl.edu.my>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 13:08:50 by fizad             #+#    #+#             */
-/*   Updated: 2023/10/26 13:08:51 by fizad            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
-static int	ft_isspace(int c)
+static int	is_space(int c)
 {
 	return (c == ' ' || c == '\t' || c == '\n'
 		|| c == '\r' || c == '\f' || c == '\v');
 }
 
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *n)
 {
-	int		result;
-	int		sign;
+	int	sign;
+	int	r;
 
-	result = 0;
 	sign = 1;
-	while (ft_isspace(*str))
-		++str;
-	if (*str == '-' || *str == '+')
+	r = 0;
+	while (is_space(*n))
+		++n;
+	if (*n == '+' || *n == '-')
 	{
-		if (*str == '-')
+		if (*n == '-')
 			sign = -1;
-		++str;
+		++n;
 	}
-	while (ft_isdigit(*str))
+	while (ft_isdigit(*n))
 	{
-		result = (result * 10) + (*str - '0');
-		++str;
+		r = (r * 10) + (*n - '0');
+		++n;
 	}
-	return (result * sign);
+	return (r * sign);
 }
